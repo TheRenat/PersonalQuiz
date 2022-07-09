@@ -9,9 +9,22 @@ import UIKit
 
 class ResultViewController: UIViewController {
     
+    var answers: [Answer] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationItem.hidesBackButton = true
+        
+        var animals = answers.compactMap { $0.animal }
+        
+        var array: [String] = []
+        
+        for animal in animals {
+            if animal == Animal.dog {
+                array
+            }
+        }
     }
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
@@ -22,3 +35,6 @@ class ResultViewController: UIViewController {
         print("ResultViewController has been deallocated")
     }
 }
+
+
+
