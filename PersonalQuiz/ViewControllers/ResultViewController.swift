@@ -15,49 +15,31 @@ class ResultViewController: UIViewController {
     @IBOutlet var emojiLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
         
         let animals = answers.compactMap { $0.animal }
-        let countedSet = NSCountedSet(array: animals)
-        let mostFrequent = countedSet.max { countedSet.count(for: $0) < countedSet.count(for: $1) }
+        let animalsArray = NSCountedSet(array: animals)
+        let mostFrequentAnimal = animalsArray.max { animalsArray.count(for: $0) < animalsArray.count(for: $1) }
         
-        print(mostFrequent)
-        
-        var dogs: [String] = []
-        var cats: [Animal] = []
-        var turtles: [Animal] = []
-        var rabbits: [Animal] = []
-        
-        for animal in animals {
-            if animal == Animal.dog {
-                dogs.append("dog")
-            } else if animal == Animal.cat {
-                cats.append(animal)
-            } else if animal == Animal.turtle {
-                turtles.append(animal)
-            } else if animal == Animal.rabbit {
-                rabbits.append(animal)
-            }
-        }
-        
-        if mostFrequent as? Animal == Animal.dog {
-            if let emoji = mostFrequent as? String {
-                emojiLabel.text = answers.description
-            }
+        if mostFrequentAnimal as? Animal == Animal.dog {
+            emojiLabel.text = ("Вы - \(String(Animal.dog.rawValue))")
+            descriptionLabel.text = Animal.dog.definition
+        } else if mostFrequentAnimal as? Animal == Animal.cat {
+            emojiLabel.text = ("Вы - \(String(Animal.cat.rawValue))")
+            descriptionLabel.text = Animal.cat.definition
+        } else if mostFrequentAnimal as? Animal == Animal.turtle {
+            emojiLabel.text = ("Вы - \(String(Animal.turtle.rawValue))")
+            descriptionLabel.text = Animal.turtle.definition
+        } else if mostFrequentAnimal as? Animal == Animal.rabbit {
+            emojiLabel.text = ("Вы - \(String(Animal.rabbit.rawValue))")
+            descriptionLabel.text = Animal.rabbit.definition
         }
     }
-    
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         navigationController?.dismiss(animated: true)
-    }
-    
-    deinit {
-        print("ResultViewController has been deallocated")
     }
 }
 
