@@ -20,8 +20,8 @@ class ResultViewController: UIViewController {
         navigationItem.hidesBackButton = true
         
         let animals = answers.compactMap { $0.animal }
-        let animalsArray = NSCountedSet(array: animals)
-        let mostFrequentAnimal = animalsArray.max { animalsArray.count(for: $0) < animalsArray.count(for: $1) }
+        let animalsCount = NSCountedSet(array: animals)
+        let mostFrequentAnimal = animalsCount.max { animalsCount.count(for: $0) < animalsCount.count(for: $1) }
         
         if mostFrequentAnimal as? Animal == Animal.dog {
             emojiLabel.text = ("Вы - \(String(Animal.dog.rawValue))")
